@@ -3,7 +3,7 @@ import './questao.dart';
 import './resposta.dart';
 
 main() {
-  runApp(PerguntaApp());
+  runApp(const PerguntaApp());
 }
 
 class PerguntaAppState extends State<PerguntaApp> {
@@ -33,8 +33,15 @@ class PerguntaAppState extends State<PerguntaApp> {
     ];
     print(perguntas.length);
 
-    List<String>? respostas =
-        perguntas[_perguntaSelecionada].cast()['resposta'];
+    List<Widget>? respostas = [];
+
+    // List<String>? respostas =
+    //     perguntas[_perguntaSelecionada].cast()['resposta'];
+
+    for (String textoResp
+        in perguntas[_perguntaSelecionada].cast()['respostas']) {
+      respostas.add(Resposta(texto: textoResp, quandoSelecionado: _responder));
+    }
 
     return MaterialApp(
       home: Scaffold(
@@ -47,12 +54,10 @@ class PerguntaAppState extends State<PerguntaApp> {
         body: Column(
           children: [
             Questao(texto: perguntas[_perguntaSelecionada]['texto'].toString()),
-            // Resposta(texto: 'Resposta 1', quandoSelecionado: _responder),
-            // Resposta(texto: 'Resposta 2', quandoSelecionado: _responder),
-            // Resposta(texto: 'Resposta 3', quandoSelecionado: _responder),
-            ...respostas!
-                .map((t) => Resposta(texto: t, quandoSelecionado: _responder))
-                .toList(),
+            ...respostas
+            // .map((t) => Resposta(
+            //     texto: t.toString(), quandoSelecionado: _responder))
+            // .toList(),
           ],
         ),
       ),
