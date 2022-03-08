@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import './questao.dart';
 import './resposta.dart';
 
@@ -8,40 +9,41 @@ main() {
 
 class PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
+  final _perguntas = const [
+    {
+      'texto': 'Qual é a sua cor favorita?',
+      'respostas': ['VERMELHO', 'VERDE', 'AZUL', 'PRETO'],
+    },
+    {
+      'texto': 'Qual é o seu animal favorito?',
+      'respostas': ['CACHORRO', 'GATO', 'CAVALO', 'VACA'],
+    },
+    {
+      'texto': 'Qual é o seu instrutor favorito?',
+      'respostas': ['JOÃO', 'MARIA', 'PAULO', 'LETICIA'],
+    }
+  ];
+
   void _responder() {
     setState(() {
       _perguntaSelecionada++;
-      print(_perguntaSelecionada);
+      // print(_perguntaSelecionada);
     });
+  }
+
+  bool get temPerguntaSelecionada {
+    return _perguntaSelecionada < _perguntas.length;
   }
 
   @override
   Widget build(BuildContext context) {
-    final perguntas = [
-      {
-        'texto': 'Qual é a sua cor favorita?',
-        'respostas': ['VERMELHO', 'VERDE', 'AZUL', 'PRETO'],
-      },
-      {
-        'texto': 'Qual é o seu animal favorito?',
-        'Respostas': ['CACHORRO', 'GATO', 'CAVALO', 'VACA'],
-      },
-      {
-        'texto': 'Qual é o seu instrutor favorito?',
-        'Respostas': ['JOÃO', 'MARIA', 'PAULO', 'LETICIA'],
-      }
-    ];
-    print(perguntas.length);
+    // print(_perguntas.length);
 
-    List<Widget>? respostas = [];
+    // List<Widget>? respostas = [];
 
-    // List<String>? respostas =
-    //     perguntas[_perguntaSelecionada].cast()['resposta'];
-
-    for (String textoResp
-        in perguntas[_perguntaSelecionada].cast()['respostas']) {
-      respostas.add(Resposta(texto: textoResp, quandoSelecionado: _responder));
-    }
+    List<String> respostas = temPerguntaSelecionada
+        ? _perguntas[_perguntaSelecionada].cast()['respostas']
+        : [];
 
     return MaterialApp(
       home: Scaffold(
@@ -51,15 +53,27 @@ class PerguntaAppState extends State<PerguntaApp> {
             child: const Text('Perguntas'),
           ),
         ),
-        body: Column(
-          children: [
-            Questao(texto: perguntas[_perguntaSelecionada]['texto'].toString()),
-            ...respostas
-            // .map((t) => Resposta(
-            //     texto: t.toString(), quandoSelecionado: _responder))
-            // .toList(),
-          ],
-        ),
+        body: temPerguntaSelecionada
+            ? Column(
+                children: [
+                  Questao(
+                      texto:
+                          _perguntas[_perguntaSelecionada]['texto'].toString()),
+                  ...respostas
+                      .map((t) => Resposta(
+                          texto: t.toString(), quandoSelecionado: _responder))
+                      .toList(),
+                ],
+              )
+            : Center(
+                child: Text(
+                  'PARABÉNS!',
+                  style: GoogleFonts.pacifico(
+                    fontSize: 38,
+                    color: const Color.fromARGB(255, 37, 106, 158),
+                  ),
+                ),
+              ),
       ),
     );
   }

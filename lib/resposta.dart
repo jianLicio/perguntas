@@ -10,6 +10,8 @@ class Resposta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 220,
+      height: 50,
       margin: const EdgeInsets.all(10.0),
       decoration: const BoxDecoration(
         border: Border(

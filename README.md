@@ -1,7 +1,7 @@
 # perguntas
 
-A new Flutter project.
-
+Projeto simples para fixamento no desenvolvimento de flutter
+Brench Principal: Teste.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
