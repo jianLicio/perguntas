@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import './questao.dart';
-import './resposta.dart';
+import 'package:perguntas/resultado.dart';
+import 'questionario.dart';
 
 main() {
   runApp(const PerguntaApp());
@@ -37,14 +36,6 @@ class PerguntaAppState extends State<PerguntaApp> {
 
   @override
   Widget build(BuildContext context) {
-    // print(_perguntas.length);
-
-    // List<Widget>? respostas = [];
-
-    List<String> respostas = temPerguntaSelecionada
-        ? _perguntas[_perguntaSelecionada].cast()['respostas']
-        : [];
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -54,26 +45,11 @@ class PerguntaAppState extends State<PerguntaApp> {
           ),
         ),
         body: temPerguntaSelecionada
-            ? Column(
-                children: [
-                  Questao(
-                      texto:
-                          _perguntas[_perguntaSelecionada]['texto'].toString()),
-                  ...respostas
-                      .map((t) => Resposta(
-                          texto: t.toString(), quandoSelecionado: _responder))
-                      .toList(),
-                ],
-              )
-            : Center(
-                child: Text(
-                  'PARABÉNS!',
-                  style: GoogleFonts.pacifico(
-                    fontSize: 38,
-                    color: const Color.fromARGB(255, 37, 106, 158),
-                  ),
-                ),
-              ),
+            ? Questionario(
+                perguntas: _perguntas,
+                perguntaSelecionada: _perguntaSelecionada,
+                responder: _responder)
+            : const Resultado(),
       ),
     );
   }
