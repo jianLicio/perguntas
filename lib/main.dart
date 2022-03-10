@@ -8,25 +8,49 @@ main() {
 
 class PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
+  var _pontuacaoTotal = 0;
   final _perguntas = const [
     {
       'texto': 'Qual é a sua cor favorita?',
-      'respostas': ['VERMELHO', 'VERDE', 'AZUL', 'PRETO'],
+      'respostas': [
+        {'texto': 'VERMELHO', 'pontuacao': 10},
+        {'texto': 'VERDE', 'pontuacao': 5},
+        {'texto': 'AZUL', 'pontuacao': 4},
+        {'texto': 'PRETO', 'pontuacao': 1},
+      ],
     },
     {
       'texto': 'Qual é o seu animal favorito?',
-      'respostas': ['CACHORRO', 'GATO', 'CAVALO', 'VACA'],
+      'respostas': [
+        {'texto': 'CACHORRO', 'pontuacao': 2},
+        {'texto': 'GATO', 'pontuacao': 7},
+        {'texto': 'CAVALO', 'pontuacao': 3},
+        {'texto': 'VACA', 'pontuacao': 9},
+      ],
     },
     {
       'texto': 'Qual é o seu instrutor favorito?',
-      'respostas': ['JOÃO', 'MARIA', 'PAULO', 'LETICIA'],
+      'respostas': [
+        {'texto': 'JOÃO', 'pontuacao': 8},
+        {'texto': 'MARIA', 'pontuacao': 5},
+        {'texto': 'PAULO', 'pontuacao': 1},
+        {'texto': 'LETICIA', 'pontuacao': 6},
+      ],
     }
   ];
 
-  void _responder() {
+  void _responder(int pontuacao) {
     setState(() {
       _perguntaSelecionada++;
-      // print(_perguntaSelecionada);
+      _pontuacaoTotal += pontuacao;
+    });
+    debugPrint(_pontuacaoTotal as String);
+  }
+
+  void _reiniciarQuestionario() {
+    setState(() {
+      _perguntaSelecionada = 0;
+      _pontuacaoTotal = 0;
     });
   }
 
@@ -49,7 +73,10 @@ class PerguntaAppState extends State<PerguntaApp> {
                 perguntas: _perguntas,
                 perguntaSelecionada: _perguntaSelecionada,
                 responder: _responder)
-            : const Resultado(),
+            : Resultado(
+                pontuacao: _pontuacaoTotal,
+                reiniciarQuestionario: _reiniciarQuestionario,
+              ),
       ),
     );
   }
