@@ -1,7 +1,7 @@
 name: perguntas
-description: A new Flutter project.
+description: Sisteminha básico para treinamento em flutter.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -12,14 +12,29 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+
   cupertino_icons: ^1.0.2
   google_fonts: ^2.3.1
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  flutter_lints: ^1.0.4
+  
+  flutter_launcher_icons: ^0.9.2
 
-  flutter_lints: ^1.0.0
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/question.png"
+    
 flutter:
 
+  generate: true
   uses-material-design: true
+
+  

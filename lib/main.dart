@@ -3,17 +3,23 @@ import 'package:perguntas/resultado.dart';
 import 'questionario.dart';
 
 main() {
-  runApp(const PerguntaApp());
+  runApp(
+    const MaterialApp(
+      home: PerguntaApp(),
+    ),
+  );
 }
 
 class PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
   var _pontuacaoTotal = 0;
-  final _perguntas = const [
+
+  String texto = 'texto';
+  final _perguntas = [
     {
       'texto': 'Qual é a sua cor favorita?',
       'respostas': [
-        {'texto': 'VERMELHO', 'pontuacao': 10},
+        // {'texto': AppLocalizations.of(context)!.vermelho, 'pontuacao': 10},
         {'texto': 'VERDE', 'pontuacao': 5},
         {'texto': 'AZUL', 'pontuacao': 4},
         {'texto': 'PRETO', 'pontuacao': 1},
@@ -61,6 +67,7 @@ class PerguntaAppState extends State<PerguntaApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Container(
