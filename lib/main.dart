@@ -14,33 +14,36 @@ class PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
   var _pontuacaoTotal = 0;
 
-  String texto = 'texto';
+  static const texto = 'texto';
+  static const pontuacao = 'pontuacao';
+  static const respostas = 'respostas';
+
   final _perguntas = [
     {
-      'texto': 'Qual é a sua cor favorita?',
-      'respostas': [
+      texto: 'Qual é a sua cor favorita?',
+      respostas: [
         // {'texto': AppLocalizations.of(context)!.vermelho, 'pontuacao': 10},
-        {'texto': 'VERDE', 'pontuacao': 5},
-        {'texto': 'AZUL', 'pontuacao': 4},
-        {'texto': 'PRETO', 'pontuacao': 1},
+        {texto: 'VERDE', pontuacao: 5},
+        {texto: 'AZUL', pontuacao: 4},
+        {texto: 'PRETO', pontuacao: 1},
       ],
     },
     {
-      'texto': 'Qual é o seu animal favorito?',
-      'respostas': [
-        {'texto': 'CACHORRO', 'pontuacao': 2},
-        {'texto': 'GATO', 'pontuacao': 7},
-        {'texto': 'CAVALO', 'pontuacao': 3},
-        {'texto': 'VACA', 'pontuacao': 9},
+      texto: 'Qual é o seu animal favorito?',
+      respostas: [
+        {texto: 'CACHORRO', pontuacao: 2},
+        {texto: 'GATO', pontuacao: 7},
+        {texto: 'CAVALO', pontuacao: 3},
+        {texto: 'VACA', pontuacao: 9},
       ],
     },
     {
-      'texto': 'Qual é o seu instrutor favorito?',
-      'respostas': [
-        {'texto': 'JOÃO', 'pontuacao': 8},
-        {'texto': 'MARIA', 'pontuacao': 5},
-        {'texto': 'PAULO', 'pontuacao': 1},
-        {'texto': 'LETICIA', 'pontuacao': 6},
+      texto: 'Qual é o seu instrutor favorito?',
+      respostas: [
+        {texto: 'JOÃO', pontuacao: 8},
+        {texto: 'MARIA', pontuacao: 5},
+        {texto: 'PAULO', pontuacao: 1},
+        {texto: 'LETICIA', pontuacao: 6},
       ],
     }
   ];
